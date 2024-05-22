@@ -5,6 +5,7 @@ import { BsCartPlus } from "react-icons/bs";
 import { FaGreaterThan } from "react-icons/fa";
 import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 
+import Loader from "../../components/Loader";
 import Button from "../../components/Button";
 import ButtonContainer from "../../components/ButtonContainer";
 import { IMAGE_URL } from "../../utils/constans";
@@ -23,7 +24,7 @@ const ProductDetail = () => {
   };
 
   if (isLoading) {
-    return <p>Loading....</p>;
+    return <Loader />;
   }
 
   return (

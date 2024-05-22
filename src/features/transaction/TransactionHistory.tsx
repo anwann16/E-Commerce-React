@@ -1,3 +1,4 @@
+import Loader from "../../components/Loader";
 import { IMAGE_URL } from "../../utils/constans";
 import { formatIDRCurrency } from "../../utils/formatCurrency";
 import { useTransactionHistory } from "./useTransactionHistory";
@@ -22,7 +23,9 @@ type TransactionsType = {
 const TransactionHistory = () => {
   const { transactionHistory, isLoading } = useTransactionHistory();
 
-  if (isLoading) return <p>Is Loading</p>;
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="flex flex-col w-11/12 border border-solid mx-auto mt-10 px-10">

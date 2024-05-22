@@ -3,6 +3,7 @@ import { CartStateType } from "../../redux/slices/cartSlice";
 
 import ProductItem from "./ProductItem";
 import { useAuth } from "../../context/AuthContext";
+import Loader from "../../components/Loader";
 
 type ProductListType = {
   products: CartStateType[] | undefined;
@@ -14,7 +15,7 @@ const ProductList = () => {
   const { products, isLoading }: ProductListType = useProducts(search);
 
   if (isLoading) {
-    return <p>Loading</p>;
+    return <Loader />;
   }
 
   if (products?.length === 0) {
