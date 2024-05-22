@@ -15,7 +15,7 @@ import { useAuth } from "../context/AuthContext";
 const Navbar = () => {
   const [navbarScroll, setNavbarScroll] = useState<boolean>(false);
   const { carts } = useSelector((state: RootTypes) => state.cart);
-  const { user } = useAuth();
+  const { user, search, setSearch } = useAuth();
 
   const stickyNav = () => {
     if (window.scrollY > 100) {
@@ -43,6 +43,8 @@ const Navbar = () => {
           type="text"
           className="w-full py-[7px] px-2 text-xs rounded-md outline-none placeholder:text-xs"
           placeholder="Search your product..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
         <IoSearch className="absolute right-3 cursor-pointer" />
       </div>

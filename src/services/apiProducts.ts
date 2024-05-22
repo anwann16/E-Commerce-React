@@ -4,8 +4,14 @@ import { API_URL } from "../utils/constans";
 import { CartStateType } from "../redux/slices/cartSlice";
 import axiosInstance from "../utils/axiosInstance";
 
-export const fetchAllProducts = async (): Promise<CartStateType[]> => {
-  const response = await axios.get(`${API_URL}/products`);
+export const fetchAllProducts = async (
+  search: string
+): Promise<CartStateType[]> => {
+  const response = await axios.get(`${API_URL}/products`, {
+    params: {
+      search: search,
+    },
+  });
   return response.data.data;
 };
 

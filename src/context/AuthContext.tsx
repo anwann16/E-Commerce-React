@@ -19,6 +19,8 @@ type AuthContextType = {
   user: UserDataTypes | null;
   loginApiCall: ({ email, password }: LoginApiType) => Promise<void>;
   logoutApiCall: () => Promise<void>;
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 };
 
 type AuthContextProviderType = {
@@ -28,6 +30,7 @@ type AuthContextProviderType = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthContextProvider = ({ children }: AuthContextProviderType) => {
+  const [search, setSearch] = useState<string>("");
   const [user, setUser] = useState<UserDataTypes | null>(() => {
     const userProfile = localStorage.getItem("userProfile");
     if (userProfile) {
@@ -35,6 +38,8 @@ export const AuthContextProvider = ({ children }: AuthContextProviderType) => {
     }
     return null;
   });
+
+  // console.log(search);
 
   const loginApiCall = async ({ email, password }: LoginApiType) => {
     await login({ email, password });
@@ -56,6 +61,8 @@ export const AuthContextProvider = ({ children }: AuthContextProviderType) => {
         loginApiCall,
         logoutApiCall,
         user,
+        search,
+        setSearch,
       }}
     >
       {children}
